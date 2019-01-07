@@ -41,8 +41,9 @@ def lock_dir(key, _path):
             if not file.endswith(".enc") and file != ".crypter" and file != ".filenames":
                 encrypt_file(key, os.path.join(path, file))
     if SETTINGS['jumble'] and not os.path.isfile(os.path.join(find_dir(), ".filenames.enc")):
+        basedir = find_dir()
         jumble(_path)
-        encrypt_file(key, os.path.join(find_dir(), ".filenames"))
+        encrypt_file(key, os.path.join(basedir, ".filenames"))
 
 def unlock_dir(_path, passphrase):
     if SETTINGS['jumble'] and os.path.isfile(os.path.join(find_dir(), ".filenames.enc")):
